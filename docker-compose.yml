@@ -1,0 +1,22 @@
+version: "3"
+services:
+  solr:
+    ports:
+      - 8983:8983
+    tty: true
+    stdin_open: true
+    image: solr
+    environment:
+      - SOLR_HEAP=2g
+    command:
+      - solr-precreate
+      - domains
+    volumes:
+      - solrdata:/var/solr
+  cli:
+    build: .
+    ports:
+      - 8080:8080
+
+volumes:
+  solrdata:
