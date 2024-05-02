@@ -12,4 +12,4 @@ WORKDIR /app
 
 COPY --from=build /build/build/libs/solrj-spring-0.0.1-SNAPSHOT.jar solrj-cli.jar
 
-ENTRYPOINT ["java", "-jar", "solrj-cli.jar"]
+ENTRYPOINT ["java", "-jar", "solrj-cli.jar", "--Dcli.solrhostname=solr"]

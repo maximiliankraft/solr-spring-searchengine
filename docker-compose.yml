@@ -2,7 +2,8 @@ version: "3"
 services:
   solr:
     ports:
-      - 8983:8983
+      # do not forward in production
+      - "8983:8983"
     tty: true
     stdin_open: true
     image: solr
@@ -13,10 +14,10 @@ services:
       - domains
     volumes:
       - solrdata:/var/solr
-  cli:
+  solrapi:
     build: .
     ports:
-      - 8080:8080
+      - "8080:8080"
 
 volumes:
   solrdata:

@@ -7,6 +7,7 @@ import at.spengergasse.solrjspring.solr.SolrQueryExecutor;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.common.SolrDocumentList;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -19,8 +20,8 @@ public class DomainController {
     HttpSolrClient solrClient;
     SolrQueryExecutor<DomainBean> queryExecutor;
 
-    public DomainController(SolrClientFactory solrClientFactory, HttpSolrClient solrClient) throws IOException {
-        this.solrClientFactory = new SolrClientFactory();
+    public DomainController(SolrClientFactory solrClientFactory, HttpSolrClient solrClient, Environment environment) throws IOException {
+        this.solrClientFactory = new SolrClientFactory(environment);
         this.solrClient = solrClientFactory.solrBean();
         this.queryExecutor = new SolrQueryExecutor<>(solrClient, DomainBean.class);
     }
